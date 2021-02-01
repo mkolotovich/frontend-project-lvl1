@@ -13,8 +13,8 @@ const brainCalc = () => {
   let result;
   let expression;
   const winAnswersCount = 3;
+  console.log('What is the result of the expression?');
   while (correctAnswersCount < winAnswersCount) {
-    console.log('What is the result of the expression?');
     const firstNum = numbers[getRandomIndex(numbers)];
     const secondNum = numbers[getRandomIndex(numbers)];
     const index = getRandomIndex(signs);
