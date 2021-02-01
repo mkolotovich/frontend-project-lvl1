@@ -4,19 +4,21 @@ import getRandomIndex from './index.js';
 
 const gcd = () => {
   let correctAnswersCount = 0;
-  const numbers = [[25, 50], [100, 52], [3, 9], [3, 3], [4, 5], [1, 1]];
+  const numbers = [25, 50, 100, 52, 3, 9, 3, 3, 4, 5, 1, 1];
   const winAnswersCount = 3;
   console.log('Find the greatest common divisor of given numbers.');
   while (correctAnswersCount < winAnswersCount) {
-    const index = numbers[getRandomIndex(numbers)];
-    console.log(`Question: ${index[0]} ${index[1]}`);
-    const answer = readlineSync.question('Your answer: ');
+    const firstNum = numbers[getRandomIndex(numbers)];
+    const secondNum = numbers[getRandomIndex(numbers)];
+    console.log(`Question: ${firstNum} ${secondNum}`);
     let bigger;
     let smaller;
-    if (index[0] > index[1]) {
-      [bigger, smaller] = index;
+    if (firstNum > secondNum) {
+      bigger = firstNum;
+      smaller = secondNum;
     } else {
-      [smaller, bigger] = index;
+      bigger = secondNum;
+      smaller = firstNum;
     }
     let restOfDivide;
     let quotient;
@@ -27,6 +29,7 @@ const gcd = () => {
       smaller = restOfDivide;
     }
     while (restOfDivide !== 0);
+    const answer = readlineSync.question('Your answer: ');
     if (bigger === Number(answer)) {
       console.log('Correct!');
       correctAnswersCount += 1;
