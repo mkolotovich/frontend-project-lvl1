@@ -17,10 +17,13 @@ const progression = () => {
       console.log('Correct!');
       correctAnswersCount += 1;
     } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${numbers[index]}'.`);
       console.log(`Let's try again, ${whatIsUserName()}!`);
-      correctAnswersCount = winAnswersCount;
+      break;
     }
+  }
+  if (correctAnswersCount === winAnswersCount) {
+    console.log(`Congratulations, ${whatIsUserName()}!`);
   }
 };
 
