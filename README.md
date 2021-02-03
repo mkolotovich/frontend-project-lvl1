@@ -6,3 +6,4 @@
 [asciinema brain-gcd](https://asciinema.org/a/Z4OpwDiOJwHUPTR4wpSpBCvJp)
 [![Actions Status](https://github.com/mkolotovich/frontend-project-lvl1/workflows/ESLint-check/badge.svg)](https://github.com/mkolotovich/frontend-project-lvl1/actions)
 [asciinema brain-progression](https://asciinema.org/a/eDQG2UKljMthApHYsQHRBWW1a)
+[asciinema brain-prime](https://asciinema.org/a/EpElc2iQlwXfBdSt4mGnFrH3A)

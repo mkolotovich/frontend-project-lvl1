@@ -16,18 +16,22 @@ export const gameFlow = (arr, question) => {
     const answer = readlineSync.question('Your answer: ');
     switch (question) {
       case 'Answer "yes" if given number is prime. Otherwise answer "no".':
-        prime(arr, index, answer);
+        prime(arr, index);
         break;
       default:
         greeting();
     }
-    if (prime(arr, index, answer) === true) {
+    if ((prime(arr, index) === true && answer === 'yes') || (prime(arr, index) === false && answer === 'no')) {
       console.log('Correct!');
       correctAnswersCount += 1;
-    } else {
+    } else if (prime(arr, index) === true && answer !== 'yes') {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
       console.log(`Let's try again, ${whatIsUserName()}!`);
-      correctAnswersCount = winAnswersCount;
+      break;
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+      console.log(`Let's try again, ${whatIsUserName()}!`);
+      break;
     }
   }
   if (correctAnswersCount === winAnswersCount) {
