@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import prime from './prime.js';
+import isPrime from './games/prime.js';
 import { greeting, whatIsUserName } from './cli.js';
 
 const getRandomIndex = (arr) => Math.floor(Math.random() * Math.floor(arr.length));
@@ -16,15 +16,15 @@ export const gameFlow = (arr, question) => {
     const answer = readlineSync.question('Your answer: ');
     switch (question) {
       case 'Answer "yes" if given number is prime. Otherwise answer "no".':
-        prime(arr, index);
+        isPrime(arr, index);
         break;
       default:
         greeting();
     }
-    if ((prime(arr, index) === true && answer === 'yes') || (prime(arr, index) === false && answer === 'no')) {
+    if ((isPrime(arr, index) === true && answer === 'yes') || (isPrime(arr, index) === false && answer === 'no')) {
       console.log('Correct!');
       correctAnswersCount += 1;
-    } else if (prime(arr, index) === true && answer !== 'yes') {
+    } else if (isPrime(arr, index) === true && answer !== 'yes') {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
       console.log(`Let's try again, ${whatIsUserName()}!`);
       break;

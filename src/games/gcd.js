@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
-import { whatIsUserName } from './cli.js';
-import getRandomIndex from './index.js';
+import { whatIsUserName } from '../cli.js';
+import getRandomIndex from '../index.js';
 
 const gcd = () => {
   let correctAnswersCount = 0;

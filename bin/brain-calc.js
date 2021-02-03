@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { greeting } from '../src/cli.js';
-import brainCalc from '../src/calc.js';
+import calculateNum from '../src/games/calc.js';
 
 greeting();
-brainCalc();
+calculateNum();

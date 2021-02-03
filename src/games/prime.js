@@ -1,4 +1,4 @@
-const prime = (arr, index) => {
+const isPrime = (arr, index) => {
   const dividers = [2];
   const lastDivider = Math.floor(Math.sqrt(arr[index]));
   for (let i = 0; i < dividers.length; i += 1) {
@@ -12,4 +12,4 @@ const prime = (arr, index) => {
   return false;
 };
 
-export default prime;
+export default isPrime;

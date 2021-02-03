@@ -1,8 +1,8 @@
 import readlineSync from 'readline-sync';
-import { whatIsUserName } from './cli.js';
-import getRandomIndex from './index.js';
+import { whatIsUserName } from '../cli.js';
+import getRandomIndex from '../index.js';
 
-const brainCalc = () => {
+const calculateNum = () => {
   let correctAnswersCount = 0;
   const numbers = [35, 16, 4, 10, 25, 11, 7];
   const sum = (a, b) => a + b;
@@ -36,4 +36,4 @@ const brainCalc = () => {
   }
 };
 
-export default brainCalc;
+export default calculateNum;
