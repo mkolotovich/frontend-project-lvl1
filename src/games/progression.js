@@ -4,7 +4,8 @@ import { whatIsUserName } from '../cli.js';
 const isNumInProgression = (arr, index) => {
   const modifyedNumbers = arr.slice();
   modifyedNumbers[index] = '..';
-  console.log(`Question: ${modifyedNumbers}`);
+  const progression = modifyedNumbers.join(' ');
+  console.log(`Question: ${progression}`);
   const answer = readlineSync.question('Your answer: ');
   if (arr[index] === Number(answer)) {
     console.log('Correct!');
