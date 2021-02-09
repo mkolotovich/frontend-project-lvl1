@@ -1,6 +1,6 @@
 import isPrime from './games/prime.js';
 import isNumInProgression from './games/progression.js';
-import { greeting, whatIsUserName } from './cli.js';
+import { whatIsUserName } from './cli.js';
 
 const getRandomIndex = (arr) => Math.floor(Math.random() * Math.floor(arr.length));
 
