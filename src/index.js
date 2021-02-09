@@ -13,27 +13,18 @@ export const playGame = (arr, question) => {
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
     const index = getRandomIndex(arr);
-    switch (question) {
-      case 'Answer "yes" if given number is prime. Otherwise answer "no".':
-        if (isPrime(arr, index)) {
+    const funcArr = [isPrime, isNumInProgression];
+    const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?'];
+    for (let i = 0; i < arr.length; i += 1) {
+      if (question === questionsArr[i]) {
+        if (funcArr[i](arr, index)) {
           correctAnswersCount += 1;
           isCorrect = true;
         } else {
           correctAnswersCount = 3;
           isCorrect = false;
         }
-        break;
-      case 'What number is missing in the progression?':
-        if (isNumInProgression(arr, index)) {
-          correctAnswersCount += 1;
-          isCorrect = true;
-        } else {
-          correctAnswersCount = 3;
-          isCorrect = false;
-        }
-        break;
-      default:
-        greeting();
+      }
     }
   }
   if (correctAnswersCount === winAnswersCount && isCorrect === true) {
