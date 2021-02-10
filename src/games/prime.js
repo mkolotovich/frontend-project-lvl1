@@ -16,12 +16,10 @@ const isPrime = (arr, index) => {
     }
     if (arr[index] % dividers[i] !== 0 && answer !== 'yes') {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-      console.log(`Let's try again, ${whatIsUserName()}!`);
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-      console.log(`Let's try again, ${whatIsUserName()}!`);
-      break;
     }
+    console.log(`Let's try again, ${whatIsUserName()}!`);
   }
   return false;
 };
