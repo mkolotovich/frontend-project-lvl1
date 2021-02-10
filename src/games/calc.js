@@ -1,39 +1,25 @@
 import readlineSync from 'readline-sync';
 import { whatIsUserName } from '../cli.js';
-import getRandomIndex from '../index.js';
 
-const calculateNum = () => {
-  let correctAnswersCount = 0;
-  const numbers = [35, 16, 4, 10, 25, 11, 7];
+const isCalculateNumCorrect = (arr, index, index1, index2) => {
   const sum = (a, b) => a + b;
   const sub = (a, b) => a - b;
   const mult = (a, b) => a * b;
   const signs = ['+', '-', '*'];
   const actions = [sum, sub, mult];
-  let result;
-  let expression;
-  const winAnswersCount = 3;
-  console.log('What is the result of the expression?');
-  while (correctAnswersCount < winAnswersCount) {
-    const firstNum = numbers[getRandomIndex(numbers)];
-    const secondNum = numbers[getRandomIndex(numbers)];
-    const index = getRandomIndex(signs);
-    expression = `${firstNum} ${signs[index]} ${secondNum}`;
-    console.log(`Question: ${expression}`);
-    result = actions[index](firstNum, secondNum);
-    const answer = readlineSync.question('Your answer: ');
-    if (result === Number(answer)) {
-      console.log('Correct!');
-      correctAnswersCount += 1;
-    } else {
-      console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-      console.log(`Let's try again, ${whatIsUserName()}!`);
-      break;
-    }
+  const firstNum = arr[index];
+  const secondNum = arr[index1];
+  const expression = `${firstNum} ${signs[index2]} ${secondNum}`;
+  console.log(`Question: ${expression}`);
+  const result = actions[index2](firstNum, secondNum);
+  const answer = readlineSync.question('Your answer: ');
+  if (result === Number(answer)) {
+    console.log('Correct!');
+    return true;
   }
-  if (correctAnswersCount === winAnswersCount) {
-    console.log(`Congratulations, ${whatIsUserName()}!`);
-  }
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${result}'.`);
+  console.log(`Let's try again, ${whatIsUserName()}!`);
+  return false;
 };
 
-export default calculateNum;
+export default isCalculateNumCorrect;
