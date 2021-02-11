@@ -12,11 +12,8 @@ const getRandomIndex = (arr, length = arr.length) => {
   return Math.floor(Math.random() * Math.floor(length));
 };
 
-export default getRandomIndex;
-
-export const playGame = (arr, question) => {
+const playGame = (arr, question) => {
   let correctAnswersCount = 0;
-  let isCorrect;
   const winAnswersCount = 3;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
@@ -28,13 +25,13 @@ export const playGame = (arr, question) => {
     const funcIndex = questionsArr.indexOf(question);
     if (funcArr[funcIndex](arr, index, index1, index2)) {
       correctAnswersCount += 1;
-      isCorrect = true;
     } else {
-      correctAnswersCount = winAnswersCount;
-      isCorrect = false;
+      break;
     }
   }
-  if (correctAnswersCount === winAnswersCount && isCorrect === true) {
+  if (correctAnswersCount === winAnswersCount) {
     console.log(`Congratulations, ${whatIsUserName()}!`);
   }
 };
+
+export default playGame;
