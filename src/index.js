@@ -29,23 +29,25 @@ const playGame = (arr, question) => {
     const firstNum = arr[index];
     const secondNum = arr[index1];
     const expression = `${firstNum} ${signs[index2]} ${secondNum}`;
-    if (question !== 'What is the result of the expression?') {
+    if (question === 'Answer "yes" if the number is even, otherwise answer "no".') {
       console.log(`Question: ${arr[index]}`);
+    } else if (question === 'Find the greatest common divisor of given numbers.') {
+      console.log(`Question: ${firstNum} ${secondNum}`);
     } else {
       console.log(`Question: ${expression}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if (funcArr[funcIndex](arr, index, index1, index2) && answer === 'yes') {
+    if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0]) {
       correctAnswersCount += 1;
       console.log('Correct!');
-    } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0]) {
+    } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes') {
       correctAnswersCount += 1;
       console.log('Correct!');
-    } else if (!funcArr[funcIndex](arr, index, index1, index2) && answer === 'no') {
+    } else if (!funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'no') {
       correctAnswersCount += 1;
       console.log('Correct!');
     } else {
-      if (question === 'What is the result of the expression?') {
+      if (question === 'What is the result of the expression?' || question === 'Find the greatest common divisor of given numbers.') {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[1]}'.`);
       } else if (funcArr[funcIndex](arr, index, index1, index2) && answer !== 'yes') {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
