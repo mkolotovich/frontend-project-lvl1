@@ -1,9 +1,10 @@
+import readlineSync from 'readline-sync';
 import { checkNumIsPrime } from './games/prime.js';
 import isNumInProgression from './games/progression.js';
 import isGcd from './games/gcd.js';
 import isEven from './games/even.js';
 import isCalculateNumCorrect from './games/calc.js';
-import { whatIsUserName } from './cli.js';
+import { greeting, whatIsUserName } from './cli.js';
 
 const getRandomIndex = (arr, length = arr.length) => {
   if (length === arr.length) {
@@ -13,6 +14,7 @@ const getRandomIndex = (arr, length = arr.length) => {
 };
 
 const playGame = (arr, question) => {
+  greeting();
   let correctAnswersCount = 0;
   const winAnswersCount = 3;
   console.log(question);
@@ -23,9 +25,34 @@ const playGame = (arr, question) => {
     const funcArr = [checkNumIsPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
     const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
     const funcIndex = questionsArr.indexOf(question);
-    if (funcArr[funcIndex](arr, index, index1, index2)) {
-      correctAnswersCount += 1;
+    const signs = ['+', '-', '*'];
+    const firstNum = arr[index];
+    const secondNum = arr[index1];
+    const expression = `${firstNum} ${signs[index2]} ${secondNum}`;
+    if (question !== 'What is the result of the expression?') {
+      console.log(`Question: ${arr[index]}`);
     } else {
+      console.log(`Question: ${expression}`);
+    }
+    const answer = readlineSync.question('Your answer: ');
+    if (funcArr[funcIndex](arr, index, index1, index2) && answer === 'yes') {
+      correctAnswersCount += 1;
+      console.log('Correct!');
+    } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0]) {
+      correctAnswersCount += 1;
+      console.log('Correct!');
+    } else if (!funcArr[funcIndex](arr, index, index1, index2) && answer === 'no') {
+      correctAnswersCount += 1;
+      console.log('Correct!');
+    } else {
+      if (question === 'What is the result of the expression?') {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[1]}'.`);
+      } else if (funcArr[funcIndex](arr, index, index1, index2) && answer !== 'yes') {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
+      } else {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+      }
+      console.log(`Let's try again, ${whatIsUserName()}!`);
       break;
     }
   }
