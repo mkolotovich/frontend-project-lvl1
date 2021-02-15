@@ -37,7 +37,7 @@ const playGame = (arr, question) => {
       console.log(`Question: ${expression}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0]) {
+    if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question !== 'Answer "yes" if the number is even, otherwise answer "no".') {
       correctAnswersCount += 1;
       console.log('Correct!');
     } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes') {
