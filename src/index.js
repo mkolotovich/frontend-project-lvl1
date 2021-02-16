@@ -42,8 +42,9 @@ const playGame = (arr, question) => {
       console.log(`Question: ${expression}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if ((funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question !== 'Answer "yes" if given number is prime. Otherwise answer "no".')
-    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question !== 'Answer "yes" if the number is even, otherwise answer "no".')) {
+    if ((funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What is the result of the expression?')
+    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'Find the greatest common divisor of given numbers.')
+    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What number is missing in the progression?')) {
       correctAnswersCount += 1;
       console.log('Correct!');
     } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes') {
