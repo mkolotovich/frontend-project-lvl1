@@ -13,6 +13,25 @@ const getRandomIndex = (arr, length = arr.length) => {
   return Math.floor(Math.random() * Math.floor(length));
 };
 
+const getAnswer = (func, question, answer) => {
+  if ((func[0] && question === 'What is the result of the expression?')
+  || (func[0] && question === 'Find the greatest common divisor of given numbers.')
+  || (func[0] && question === 'What number is missing in the progression?')
+  || (func[0] && answer === 'yes')
+  || (!func[0] && answer === 'no')) {
+    console.log('Correct!');
+    return true;
+  }
+  if (question === 'What is the result of the expression?' || question === 'Find the greatest common divisor of given numbers.' || question === 'What number is missing in the progression?') {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${func[1]}'.`);
+  } else if (func && answer !== 'yes') {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
+  } else {
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+  }
+  return false;
+};
+
 const playGame = (arr, question) => {
   greeting();
   let correctAnswersCount = 0;
@@ -42,21 +61,10 @@ const playGame = (arr, question) => {
       console.log(`Question: ${expression}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if ((funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What is the result of the expression?')
-    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'Find the greatest common divisor of given numbers.')
-    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What number is missing in the progression?')
-    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes')
-    || (!funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'no')) {
+    if (getAnswer(funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer),
+      question, answer)) {
       correctAnswersCount += 1;
-      console.log('Correct!');
     } else {
-      if (question === 'What is the result of the expression?' || question === 'Find the greatest common divisor of given numbers.' || question === 'What number is missing in the progression?') {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[1]}'.`);
-      } else if (funcArr[funcIndex](arr, index, index1, index2) && answer !== 'yes') {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-      } else {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-      }
       console.log(`Let's try again, ${whatIsUserName()}!`);
       break;
     }
