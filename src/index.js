@@ -44,13 +44,9 @@ const playGame = (arr, question) => {
     const answer = readlineSync.question('Your answer: ');
     if ((funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What is the result of the expression?')
     || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'Find the greatest common divisor of given numbers.')
-    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What number is missing in the progression?')) {
-      correctAnswersCount += 1;
-      console.log('Correct!');
-    } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes') {
-      correctAnswersCount += 1;
-      console.log('Correct!');
-    } else if (!funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'no') {
+    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What number is missing in the progression?')
+    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes')
+    || (!funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'no')) {
       correctAnswersCount += 1;
       console.log('Correct!');
     } else {
