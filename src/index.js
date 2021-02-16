@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { checkNumIsPrime } from './games/prime.js';
+import isPrime from './games/prime.js';
 import isNumInProgression from './games/progression.js';
 import isGcd from './games/gcd.js';
 import isEven from './games/even.js';
@@ -22,14 +22,14 @@ const playGame = (arr, question) => {
     const index = getRandomIndex(arr);
     const index1 = getRandomIndex(arr);
     const index2 = getRandomIndex(arr, 3);
-    const funcArr = [checkNumIsPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
+    const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
     const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
     const funcIndex = questionsArr.indexOf(question);
     const signs = ['+', '-', '*'];
     const firstNum = arr[index];
     const secondNum = arr[index1];
     const expression = `${firstNum} ${signs[index2]} ${secondNum}`;
-    if (question === 'Answer "yes" if the number is even, otherwise answer "no".') {
+    if (question === 'Answer "yes" if the number is even, otherwise answer "no".' || question === 'Answer "yes" if given number is prime. Otherwise answer "no".') {
       console.log(`Question: ${arr[index]}`);
     } else if (question === 'Find the greatest common divisor of given numbers.') {
       console.log(`Question: ${firstNum} ${secondNum}`);
@@ -37,7 +37,8 @@ const playGame = (arr, question) => {
       console.log(`Question: ${expression}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question !== 'Answer "yes" if the number is even, otherwise answer "no".') {
+    if ((funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'What is the result of the expression?')
+    || (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && question === 'Find the greatest common divisor of given numbers.')) {
       correctAnswersCount += 1;
       console.log('Correct!');
     } else if (funcArr[funcIndex](arr, index, index1, index2, firstNum, secondNum, answer)[0] && answer === 'yes') {
