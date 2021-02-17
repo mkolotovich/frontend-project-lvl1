@@ -24,7 +24,7 @@ const getAnswer = (func, question, answer) => {
   }
   if (question === 'What is the result of the expression?' || question === 'Find the greatest common divisor of given numbers.' || question === 'What number is missing in the progression?') {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${func[1]}'.`);
-  } else if (func && answer !== 'yes') {
+  } else if (func[0] && answer !== 'yes') {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
   } else {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
@@ -48,7 +48,7 @@ const playGame = (arr, question) => {
     const index = getRandomIndex(arr);
     const index1 = getRandomIndex(arr);
     const index2 = getRandomIndex(arr, 3);
-    if (question === 'Answer "yes" if the number is even, otherwise answer "no".' || question === 'Answer "yes" if given number is prime. Otherwise answer "no".') {
+    if (question === 'Answer "yes" if given number is prime. Otherwise answer "no".') {
       console.log(`Question: ${arr[index]}`);
     } else if (question === 'Find the greatest common divisor of given numbers.') {
       console.log(`Question: ${arr[index]} ${arr[index1]}`);
