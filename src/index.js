@@ -43,8 +43,8 @@ const getData = (question) => {
 const playGame = (arr, question) => {
   let correctAnswersCount = 0;
   greeting();
+  console.log(question);
   while (correctAnswersCount < getData()[0]) {
-    console.log(question);
     const index = getRandomIndex(arr);
     const index1 = getRandomIndex(arr);
     const index2 = getRandomIndex(arr, 3);
