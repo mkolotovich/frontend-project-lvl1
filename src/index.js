@@ -32,42 +32,43 @@ const getAnswer = (func, question, answer) => {
   return false;
 };
 
-const playGame = (arr, question) => {
-  greeting();
-  let correctAnswersCount = 0;
+const getData = (question) => {
   const winAnswersCount = 3;
-  console.log(question);
-  while (correctAnswersCount < winAnswersCount) {
+  const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
+  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
+  const funcIndex = questionsArr.indexOf(question);
+  return [winAnswersCount, funcArr, funcIndex];
+};
+
+const playGame = (arr, question) => {
+  let correctAnswersCount = 0;
+  greeting();
+  while (correctAnswersCount < getData()[0]) {
+    console.log(question);
     const index = getRandomIndex(arr);
     const index1 = getRandomIndex(arr);
     const index2 = getRandomIndex(arr, 3);
-    const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
-    const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
-    const funcIndex = questionsArr.indexOf(question);
-    const signs = ['+', '-', '*'];
-    const expression = `${arr[index]} ${signs[index2]} ${arr[index1]}`;
-    const modifyedNumbers = arr.slice();
-    modifyedNumbers[index] = '..';
-    const progression = modifyedNumbers.join(' ');
     if (question === 'Answer "yes" if the number is even, otherwise answer "no".' || question === 'Answer "yes" if given number is prime. Otherwise answer "no".') {
       console.log(`Question: ${arr[index]}`);
     } else if (question === 'Find the greatest common divisor of given numbers.') {
       console.log(`Question: ${arr[index]} ${arr[index1]}`);
-    } else if (question === 'What number is missing in the progression?') {
-      console.log(`Question: ${progression}`);
     } else {
-      console.log(`Question: ${expression}`);
+      console.log(`Question: ${getData()[1][getData(question)[2]](arr, index, index1, index2, arr[index], arr[index1])[2]}`);
     }
     const answer = readlineSync.question('Your answer: ');
-    if (getAnswer(funcArr[funcIndex](arr, index, index1, index2, arr[index], arr[index1], answer),
-      question, answer)) {
+    if
+    (getAnswer(
+      getData(
+      )[1][getData(question)[2]](arr, index, index1, index2, arr[index], arr[index1], answer),
+      question, answer,
+    )) {
       correctAnswersCount += 1;
     } else {
       console.log(`Let's try again, ${whatIsUserName()}!`);
       break;
     }
   }
-  if (correctAnswersCount === winAnswersCount) {
+  if (correctAnswersCount === getData()[0]) {
     console.log(`Congratulations, ${whatIsUserName()}!`);
   }
 };
