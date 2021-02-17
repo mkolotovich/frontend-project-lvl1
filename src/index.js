@@ -48,9 +48,7 @@ const playGame = (arr, question) => {
     const index = getRandomIndex(arr);
     const index1 = getRandomIndex(arr);
     const index2 = getRandomIndex(arr, 3);
-    if (question === 'Answer "yes" if given number is prime. Otherwise answer "no".') {
-      console.log(`Question: ${arr[index]}`);
-    } else if (question === 'Find the greatest common divisor of given numbers.') {
+    if (question === 'Find the greatest common divisor of given numbers.') {
       console.log(`Question: ${arr[index]} ${arr[index1]}`);
     } else {
       console.log(`Question: ${getData()[1][getData(question)[2]](arr, index, index1, index2, arr[index], arr[index1])[2]}`);
