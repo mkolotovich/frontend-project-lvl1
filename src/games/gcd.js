@@ -15,7 +15,7 @@ const isGcd = (arr, index, index1, index2, firstNum, secondNum, answer) => {
   if (bigger === Number(answer)) {
     return [true, bigger];
   }
-  return [false, bigger];
+  return [false, bigger, `${arr[index]} ${arr[index1]}`];
 };
 
 export default isGcd;
