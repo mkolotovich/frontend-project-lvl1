@@ -14,11 +14,9 @@ const getRandomIndex = (arr, length = arr.length) => {
 };
 
 const getAnswer = (func, question, answer) => {
-  if ((func[0] && question === 'What is the result of the expression?')
-  || (func[0] && question === 'Find the greatest common divisor of given numbers.')
-  || (func[0] && question === 'What number is missing in the progression?')
+  if ((func[0] && Number(answer) === func[1])
   || (func[0] && answer === 'yes')
-  || (!func[0] && answer === 'no')) {
+  || ((!func[0] && answer === 'no') && (question === 'Answer "yes" if given number is prime. Otherwise answer "no".' || question === 'Answer "yes" if the number is even, otherwise answer "no".'))) {
     console.log('Correct!');
     return true;
   }

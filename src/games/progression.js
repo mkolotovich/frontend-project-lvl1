@@ -3,7 +3,7 @@ const isNumInProgression = (arr, index, index1, index2, firstNum, secondNum, ans
   modifyedNumbers[index] = '..';
   const progression = modifyedNumbers.join(' ');
   if (arr[index] === Number(answer)) {
-    return [true, index];
+    return [true, arr[index]];
   }
   return [false, arr[index], progression];
 };
