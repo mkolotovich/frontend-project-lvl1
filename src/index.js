@@ -20,7 +20,7 @@ const getAnswer = (func, question, answer) => {
     console.log('Correct!');
     return true;
   }
-  if (question === 'What is the result of the expression?' || question === 'Find the greatest common divisor of given numbers.' || question === 'What number is missing in the progression?') {
+  if (!question.includes('yes')) {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${func[1]}'.`);
   } else if (func[0] && answer !== 'yes') {
     console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
