@@ -13,25 +13,29 @@ const getRandomIndex = (arr, length = arr.length) => {
   return Math.floor(Math.random() * Math.floor(length));
 };
 
-const compareFuncWithAnswer = (compareFunction, compareAnswer, question) => {
+const compareTrueFuncWithAnswer = (compareFunction, compareAnswer, question) => {
   if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && question.includes('yes'))) {
     return true;
   }
   return false;
 };
 
+const compareFalseFuncWithAnswer = (compareFunction, compareAnswer, question) => {
+  if (!question.includes('yes')) {
+    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was '${compareFunction[1]}'.`);
+  } else if (compareFunction && compareAnswer !== 'yes') {
+    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'yes'.`);
+  } else {
+    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'no'.`);
+  }
+};
+
 const getAnswer = (func, question, answer) => {
-  if ((func[0] && !question.includes('yes')) || compareFuncWithAnswer(func[0], answer, question)) {
+  if ((func[0] && !question.includes('yes')) || compareTrueFuncWithAnswer(func[0], answer, question)) {
     console.log('Correct!');
     return true;
   }
-  if (!question.includes('yes')) {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${func[1]}'.`);
-  } else if (func[0] && answer !== 'yes') {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-  }
+  compareFalseFuncWithAnswer(func, answer, question);
   return false;
 };
 
