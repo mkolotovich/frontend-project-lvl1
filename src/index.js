@@ -13,14 +13,15 @@ const getRandomIndex = (arr, length = arr.length) => {
   return Math.floor(Math.random() * Math.floor(length));
 };
 
+const compareFuncWithAnswer = (compareFunction, compareAnswer, question) => {
+  if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && question.includes('yes'))) {
+    return true;
+  }
+  return false;
+};
+
 const getAnswer = (func, question, answer) => {
-  const compare = (compareFunction, compareAnswer) => {
-    if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && answer === 'no' && question.includes('yes'))) {
-      return true;
-    }
-    return false;
-  };
-  if ((func[0] && !question.includes('yes')) || compare(func[0], answer)) {
+  if ((func[0] && !question.includes('yes')) || compareFuncWithAnswer(func[0], answer, question)) {
     console.log('Correct!');
     return true;
   }
