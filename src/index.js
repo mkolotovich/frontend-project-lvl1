@@ -41,34 +41,24 @@ const playGame = () => {
   const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
   let funcIndex;
   let question;
-  switch (process.argv[1]) {
-    case '/usr/bin/brain-calc':
-      funcIndex = 4;
-      [, , , , question] = questionsArr;
-      break;
-    case '/usr/bin/brain-even':
-      funcIndex = 3;
-      [, , , question] = questionsArr;
-      break;
-    case '/usr/bin/brain-gcd':
-      funcIndex = 2;
-      [, , question] = questionsArr;
-      break;
-    case '/usr/bin/brain-prime':
-      funcIndex = 0;
-      [question] = questionsArr;
-      break;
-    case '/usr/bin/brain-progression':
-      funcIndex = 1;
-      [, question] = questionsArr;
-      break;
-    default:
-      funcIndex = undefined;
+  if (process.argv[1].includes('/brain-even')) {
+    funcIndex = 3;
+    [, , , question] = questionsArr;
+  } else if (process.argv[1].includes('/brain-calc')) {
+    funcIndex = 4;
+    [, , , , question] = questionsArr;
+  } else if (process.argv[1].includes('/brain-gcd')) {
+    funcIndex = 2;
+    [, , question] = questionsArr;
+  } else if (process.argv[1].includes('/brain-prime')) {
+    funcIndex = 0;
+    [question] = questionsArr;
+  } else {
+    funcIndex = 1;
+    [, question] = questionsArr;
   }
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
-    console.log(process);
-    console.log(funcIndex);
     const index = getRandomIndex(funcArr[funcIndex]()[3]);
     const index1 = getRandomIndex(funcArr[funcIndex]()[3]);
     const index2 = getRandomIndex(funcArr[funcIndex]()[3], 3);
