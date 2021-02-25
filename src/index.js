@@ -58,7 +58,6 @@ const compareFalseFuncWithAnswer = (compareFunction, compareAnswer, question) =>
 
 // const compareTrueFuncWithAnswer = (compareFunction, compareAnswer) => {
 const compareTrueFuncWithAnswer = (compareFunction, compareAnswer, question) => {
-  // if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && getData()[1][3]()[1].includes('yes'))) {
   if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && question.includes('yes'))) {
     return true;
   }
