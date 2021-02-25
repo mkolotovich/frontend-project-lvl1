@@ -5,64 +5,78 @@ import isGcd from './games/gcd.js';
 import isEven from './games/even.js';
 import isCalculateNumCorrect from './games/calc.js';
 import { greeting, whatIsUserName } from './cli.js';
+import getRandomIndex from './randomNum.js';
 
-const getRandomIndex = (arr, length = arr.length) => {
-  if (length === arr.length) {
-    return Math.floor(Math.random() * Math.floor(arr.length));
+const getData = () => {
+  const winAnswersCount = 3;
+  const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
+  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
+  let funcIndex;
+  let question;
+  switch (process.argv[1]) {
+    case '/usr/bin/brain-calc':
+      funcIndex = 4;
+      [, , , , question] = questionsArr;
+      break;
+    case '/usr/bin/brain-even':
+      funcIndex = 3;
+      [, , , question] = questionsArr;
+      break;
+    case '/usr/bin/brain-gcd':
+      funcIndex = 2;
+      [, , question] = questionsArr;
+      break;
+    case '/usr/bin/brain-prime':
+      funcIndex = 0;
+      [question] = questionsArr;
+      break;
+    case '/usr/bin/brain-progression':
+      funcIndex = 1;
+      [, question] = questionsArr;
+      break;
+    default:
+      funcIndex = undefined;
   }
-  return Math.floor(Math.random() * Math.floor(length));
+  return [winAnswersCount, funcArr, funcIndex, question];
 };
 
-const compareTrueFuncWithAnswer = (compareFunction, compareAnswer, question) => {
-  if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && question.includes('yes'))) {
-    return true;
-  }
-  return false;
-};
-
-const compareFalseFuncWithAnswer = (compareFunction, compareAnswer, question) => {
-  if (!question.includes('yes')) {
-    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was '${compareFunction[1]}'.`);
-  } else if (compareFunction && compareAnswer !== 'yes') {
+const compareFalseFuncWithAnswer = (compareFunction, compareAnswer) => {
+  if (!getData()[3].includes('yes')) {
+    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was '${compareFunction[4]}'.`);
+  } else if (compareFunction[0] && compareAnswer !== 'yes') {
     console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'yes'.`);
   } else {
     console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'no'.`);
   }
 };
 
-const getAnswer = (func, question, answer) => {
-  if ((func[0] && !question.includes('yes')) || compareTrueFuncWithAnswer(func[0], answer, question)) {
-    console.log('Correct!');
+const compareTrueFuncWithAnswer = (compareFunction, compareAnswer) => {
+  if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && getData()[1][3]()[1].includes('yes'))) {
     return true;
   }
-  compareFalseFuncWithAnswer(func, answer, question);
   return false;
 };
 
-const getData = (question) => {
-  const winAnswersCount = 3;
-  const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
-  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
-  const funcIndex = questionsArr.indexOf(question);
-  return [winAnswersCount, funcArr, funcIndex];
+const getAnswer = (func, answer) => {
+  if ((func[0] && !func[1].includes('yes')) || compareTrueFuncWithAnswer(func[0], answer)) {
+    console.log('Correct!');
+    return true;
+  }
+  compareFalseFuncWithAnswer(func, answer);
+  return false;
 };
 
-const playGame = (arr, question) => {
+const playGame = () => {
   let correctAnswersCount = 0;
   greeting();
-  console.log(question);
+  console.log(getData()[3]);
   while (correctAnswersCount < getData()[0]) {
-    const index = getRandomIndex(arr);
-    const index1 = getRandomIndex(arr);
-    const index2 = getRandomIndex(arr, 3);
-    console.log(`Question: ${getData()[1][getData(question)[2]](arr, index, index1, index2, arr[index], arr[index1])[2]}`);
+    const index = getRandomIndex(getData()[1][getData()[2]]()[3]);
+    const index1 = getRandomIndex(getData()[1][getData()[2]]()[3]);
+    const index2 = getRandomIndex(getData()[1][getData()[2]]()[3], 3);
+    console.log(`Question: ${getData()[1][getData()[2]](index, index1, index2)[2]}`);
     const answer = readlineSync.question('Your answer: ');
-    if
-    (getAnswer(
-      getData(
-      )[1][getData(question)[2]](arr, index, index1, index2, arr[index], arr[index1], answer),
-      question, answer,
-    )) {
+    if (getAnswer(getData()[1][getData()[2]](index, index1, index2, answer), answer)) {
       correctAnswersCount += 1;
     } else {
       console.log(`Let's try again, ${whatIsUserName()}!`);
