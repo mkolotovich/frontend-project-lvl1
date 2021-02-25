@@ -68,6 +68,8 @@ const playGame = () => {
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
     console.log(funcArr[funcIndex]);
+    console.log(funcArr);
+    console.log(funcIndex);
     const index = getRandomIndex(funcArr[funcIndex]()[3]);
     const index1 = getRandomIndex(funcArr[funcIndex]()[3]);
     const index2 = getRandomIndex(funcArr[funcIndex]()[3], 3);
