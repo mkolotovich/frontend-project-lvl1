@@ -1,11 +1,14 @@
-const isEven = (index) => {
-  const arr = [15, 6, 7];
-  const question = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const number = arr[index];
+const isEven = (number) => {
   if (number % 2 !== 0) {
-    return [false, question, arr[index], arr];
+    return false;
   }
-  return [true, question, arr[index], arr];
+  return true;
 };
 
-export default isEven;
+const checkNumIsEven = (index) => {
+  const arr = [15, 6, 7];
+  const question = 'Answer "yes" if the number is even, otherwise answer "no".';
+  return [isEven(arr[index]), question, arr[index], arr];
+};
+
+export default checkNumIsEven;
