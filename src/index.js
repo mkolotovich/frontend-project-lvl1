@@ -7,32 +7,6 @@ import isCalculateNumCorrect from './games/calc.js';
 import { greeting, whatIsUserName } from './cli.js';
 import getRandomIndex from './randomNum.js';
 
-const compareFalseFuncWithAnswer = (compareFunction, compareAnswer, question) => {
-  if (!question.includes('yes')) {
-    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was '${compareFunction[4]}'.`);
-  } else if (compareFunction[0] && compareAnswer !== 'yes') {
-    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'yes'.`);
-  } else {
-    console.log(`'${compareAnswer}' is wrong answer ;(. Correct answer was 'no'.`);
-  }
-};
-
-const compareTrueFuncWithAnswer = (compareFunction, compareAnswer, question) => {
-  if ((compareFunction && compareAnswer === 'yes') || (!compareFunction && compareAnswer === 'no' && question.includes('yes'))) {
-    return true;
-  }
-  return false;
-};
-
-const getAnswer = (func, answer, question) => {
-  if ((func[0] && !func[1].includes('yes')) || compareTrueFuncWithAnswer(func[0], answer, question)) {
-    console.log('Correct!');
-    return true;
-  }
-  compareFalseFuncWithAnswer(func, answer, question);
-  return false;
-};
-
 const playGame = () => {
   let correctAnswersCount = 0;
   greeting();
@@ -64,9 +38,19 @@ const playGame = () => {
     const index2 = getRandomIndex(funcArr[funcIndex]()[3], 3);
     console.log(`Question: ${funcArr[funcIndex](index, index1, index2)[2]}`);
     const answer = readlineSync.question('Your answer: ');
-    if (getAnswer(funcArr[funcIndex](index, index1, index2, answer), answer, question)) {
+    if ((funcArr[funcIndex](index, index1, index2, answer)[0] && !funcArr[funcIndex](index, index1, index2, answer)[1].includes('yes'))
+      || (funcArr[funcIndex](index, index1, index2, answer)[0] && answer === 'yes')
+      || (!funcArr[funcIndex](index, index1, index2, answer)[0] && answer === 'no' && question.includes('yes'))) {
+      console.log('Correct!');
       correctAnswersCount += 1;
     } else {
+      if (!question.includes('yes')) {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](index, index1, index2, answer)[4]}'.`);
+      } else if (funcArr[funcIndex](index, index1, index2, answer)[0] && answer !== 'yes') {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
+      } else {
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
+      }
       console.log(`Let's try again, ${whatIsUserName()}!`);
       break;
     }
