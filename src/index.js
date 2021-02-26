@@ -4,12 +4,13 @@ import isNumInProgression from './games/progression.js';
 import isGcd from './games/gcd.js';
 import isEven from './games/even.js';
 import isCalculateNumCorrect from './games/calc.js';
-import { greeting, whatIsUserName } from './cli.js';
 import getRandomIndex from './randomNum.js';
 
 const playGame = () => {
   let correctAnswersCount = 0;
-  greeting();
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
   const funcArr = [isPrime, isNumInProgression, isGcd, isEven, isCalculateNumCorrect];
   const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.', 'Answer "yes" if the number is even, otherwise answer "no".', 'What is the result of the expression?'];
@@ -51,12 +52,12 @@ const playGame = () => {
       } else {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
       }
-      console.log(`Let's try again, ${whatIsUserName()}!`);
+      console.log(`Let's try again, ${name}!`);
       break;
     }
   }
   if (correctAnswersCount === winAnswersCount) {
-    console.log(`Congratulations, ${whatIsUserName()}!`);
+    console.log(`Congratulations, ${name}!`);
   }
 };
 
