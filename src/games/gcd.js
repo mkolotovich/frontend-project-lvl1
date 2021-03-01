@@ -19,11 +19,10 @@ const isGcd = (firstNum, secondNum) => {
 
 const checkGcd = (index, index1, index2, answer) => {
   const arr = [25, 50, 100, 52, 3, 9, 3, 3, 4, 5, 1, 1];
-  const question = 'Find the greatest common divisor of given numbers.';
   if (isGcd(arr[index], arr[index1]) === Number(answer)) {
-    return [true, question, `${arr[index]} ${arr[index1]}`, arr];
+    return [true, `${arr[index]} ${arr[index1]}`, arr];
   }
-  return [false, question, `${arr[index]} ${arr[index1]}`, arr, isGcd(arr[index], arr[index1], answer)];
+  return [false, `${arr[index]} ${arr[index1]}`, arr, isGcd(arr[index], arr[index1], answer)];
 };
 
 export default checkGcd;

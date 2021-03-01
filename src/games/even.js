@@ -7,8 +7,7 @@ const isEven = (number) => {
 
 const checkNumIsEven = (index) => {
   const arr = [15, 6, 7];
-  const question = 'Answer "yes" if the number is even, otherwise answer "no".';
-  return [isEven(arr[index]), question, arr[index], arr];
+  return [isEven(arr[index]), arr[index], arr];
 };
 
 export default checkNumIsEven;
