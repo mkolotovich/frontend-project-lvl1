@@ -1,15 +1,18 @@
-const isPrime = (index) => {
-  const arr = [3, 5, 6, 7];
-  const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  if (arr[index] < 2) {
-    return [false, arr[index], arr[index]];
+const isPrime = (num) => {
+  if (num < 2) {
+    return false;
   }
-  for (let i = 2; i < arr[index] / 2; i += 1) {
-    if (arr[index] % i === 0) {
-      return [false, question, arr[index], arr];
+  for (let i = 2; i < num / 2; i += 1) {
+    if (num % i === 0) {
+      return false;
     }
   }
-  return [true, question, arr[index], arr];
+  return true;
 };
 
-export default isPrime;
+const checkPrime = (index) => {
+  const arr = [3, 5, 6, 7];
+  return [isPrime(arr[index]), arr[index], arr];
+};
+
+export default checkPrime;
