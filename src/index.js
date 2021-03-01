@@ -36,7 +36,7 @@ const playGame = () => {
   while (correctAnswersCount < winAnswersCount) {
     const index = getRandomIndex(funcArr[funcIndex]()[2]);
     const index1 = getRandomIndex(funcArr[funcIndex]()[2]);
-    const index2 = getRandomIndex(funcArr[funcIndex]()[4]);
+    const index2 = getRandomIndex(funcArr[funcIndex]()[3]);
     console.log(`Question: ${funcArr[funcIndex](index, index1, index2)[1]}`);
     const answer = readlineSync.question('Your answer: ');
     if ((funcArr[funcIndex](index, index1, index2, answer)[0] && !question.includes('yes'))
@@ -46,7 +46,7 @@ const playGame = () => {
       correctAnswersCount += 1;
     } else {
       if (!question.includes('yes')) {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](index, index1, index2, answer)[3]}'.`);
+        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${funcArr[funcIndex](index, index1, index2, answer)[4]}'.`);
       } else if (funcArr[funcIndex](index, index1, index2, answer)[0] && answer !== 'yes') {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
       } else {
