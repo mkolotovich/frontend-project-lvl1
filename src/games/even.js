@@ -7,7 +7,7 @@ const isEven = (number) => {
 
 const checkNumIsEven = (index) => {
   const arr = [15, 6, 7];
-  return [isEven(arr[index]), arr[index], arr];
+  return [isEven(arr[index]), arr[index], arr, arr, arr];
 };
 
 export default checkNumIsEven;

@@ -10,7 +10,7 @@ const checkProgression = (index, index1, index2, answer) => {
   const modifyedNumbers = arr.slice();
   modifyedNumbers[index] = '..';
   const progression = modifyedNumbers.join(' ');
-  return [isNumInProgression(arr[index], answer)[0], progression, arr, arr[index]];
+  return [isNumInProgression(arr[index], answer)[0], progression, arr, arr[index], arr];
 };
 
 export default checkProgression;

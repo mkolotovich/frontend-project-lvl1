@@ -1,8 +1,3 @@
-const getRandomIndex = (arr, length = arr.length) => {
-  if (length === arr.length) {
-    return Math.floor(Math.random() * Math.floor(arr.length));
-  }
-  return Math.floor(Math.random() * Math.floor(length));
-};
+const getRandomIndex = (arr) => Math.floor(Math.random() * Math.floor(arr.length));
 
 export default getRandomIndex;

@@ -12,7 +12,7 @@ const isPrime = (num) => {
 
 const checkPrime = (index) => {
   const arr = [3, 5, 6, 7];
-  return [isPrime(arr[index]), arr[index], arr];
+  return [isPrime(arr[index]), arr[index], arr, arr, arr];
 };
 
 export default checkPrime;

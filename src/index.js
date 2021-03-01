@@ -36,7 +36,7 @@ const playGame = () => {
   while (correctAnswersCount < winAnswersCount) {
     const index = getRandomIndex(funcArr[funcIndex]()[2]);
     const index1 = getRandomIndex(funcArr[funcIndex]()[2]);
-    const index2 = getRandomIndex(funcArr[funcIndex]()[2], 3);
+    const index2 = getRandomIndex(funcArr[funcIndex]()[4]);
     console.log(`Question: ${funcArr[funcIndex](index, index1, index2)[1]}`);
     const answer = readlineSync.question('Your answer: ');
     if ((funcArr[funcIndex](index, index1, index2, answer)[0] && !question.includes('yes'))

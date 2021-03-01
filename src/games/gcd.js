@@ -22,7 +22,7 @@ const checkGcd = (index, index1, index2, answer) => {
   if (isGcd(arr[index], arr[index1]) === Number(answer)) {
     return [true, `${arr[index]} ${arr[index1]}`, arr];
   }
-  return [false, `${arr[index]} ${arr[index1]}`, arr, isGcd(arr[index], arr[index1], answer)];
+  return [false, `${arr[index]} ${arr[index1]}`, arr, isGcd(arr[index], arr[index1], answer), arr];
 };
 
 export default checkGcd;
