@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-import playGame from '../src/index.js';
+import checkNumIsEven from '../src/games/even.js';
 
-playGame();
+checkNumIsEven();

@@ -1,3 +1,5 @@
+import playGame from '../index.js';
+
 const isEven = (number) => {
   if (number % 2 !== 0) {
     return false;
@@ -6,8 +8,11 @@ const isEven = (number) => {
 };
 
 const checkNumIsEven = (index) => {
-  const arr = [15, 6, 7];
-  return [isEven(arr[index]), arr[index], arr, arr];
+  const nums = [15, 6, 7];
+  const question = 'Answer "yes" if the number is even, otherwise answer "no".';
+  return [isEven(nums[index]), checkNumIsEven, nums, question, nums[index], nums];
 };
 
 export default checkNumIsEven;
+
+playGame(checkNumIsEven());

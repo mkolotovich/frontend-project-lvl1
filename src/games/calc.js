@@ -1,6 +1,6 @@
 import playGame from '../index.js';
 
-const isCalculateNumCorrect = (firstNum, secondNum, sign, actions, answer) => {
+const isCalculateNumRight = (firstNum, secondNum, sign, actions, answer) => {
   let result;
   if (sign !== undefined) {
     result = actions[sign](firstNum, secondNum);
@@ -12,16 +12,15 @@ const isCalculateNumCorrect = (firstNum, secondNum, sign, actions, answer) => {
 };
 
 const CalculateNums = (indexforFirstNum, indexforSecondNum, sign, answer) => {
-  const arr = [35, 16, 4, 10, 25, 11, 7];
+  const nums = [35, 16, 4, 10, 25, 11, 7];
   const question = 'What is the result of the expression?';
   const actions = [(a, b) => a + b, (a, b) => a - b, (a, b) => a * b, ['+', '-', '*']];
   const signs = actions[3];
-  const expression = `${arr[indexforFirstNum]} ${signs[sign]} ${arr[indexforSecondNum]}`;
+  const expression = `${nums[indexforFirstNum]} ${signs[sign]} ${nums[indexforSecondNum]}`;
   return [
-    isCalculateNumCorrect(arr[indexforFirstNum], arr[indexforSecondNum], sign, actions, answer)[0],
-    CalculateNums, arr, signs, expression,
-    isCalculateNumCorrect(arr[indexforFirstNum], arr[indexforSecondNum], sign, actions, answer)[1],
-    question];
+    isCalculateNumRight(nums[indexforFirstNum], nums[indexforSecondNum], sign, actions, answer)[0],
+    CalculateNums, nums, question, expression, signs,
+    isCalculateNumRight(nums[indexforFirstNum], nums[indexforSecondNum], sign, actions, answer)[1]];
 };
 
 export default CalculateNums;
