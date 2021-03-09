@@ -1,6 +1,5 @@
 import readlineSync from 'readline-sync';
 import isPrime from './games/prime.js';
-import isNumInProgression from './games/progression.js';
 import getRandomIndex from './randomNum.js';
 
 const playGame = (args) => {
@@ -13,8 +12,8 @@ const playGame = (args) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
-  const funcArr = [isPrime, isNumInProgression];
-  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?'];
+  const funcArr = [isPrime];
+  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".'];
   let funcIndex;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {

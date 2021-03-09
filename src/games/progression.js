@@ -1,3 +1,5 @@
+import playGame from '../index.js';
+
 const isNumInProgression = (num, answer) => {
   if (num === Number(answer)) {
     return [true];
@@ -5,12 +7,16 @@ const isNumInProgression = (num, answer) => {
   return [false, num];
 };
 
-const checkProgression = (index, index1, index2, answer) => {
-  const arr = [5, 7, 9, 11, 13, 15, 17, 19, 21, 23];
-  const modifyedNumbers = arr.slice();
-  modifyedNumbers[index] = '..';
+const checkProgression = (randomIndex, indexForSecondNum, sign, answer) => {
+  const nums = [5, 7, 9, 11, 13, 15, 17, 19, 21, 23];
+  const question = 'What number is missing in the progression?';
+  const modifyedNumbers = nums.slice();
+  modifyedNumbers[randomIndex] = '..';
   const progression = modifyedNumbers.join(' ');
-  return [isNumInProgression(arr[index], answer)[0], progression, arr, arr, arr[index]];
+  return [isNumInProgression(nums[randomIndex], answer)[0],
+    checkProgression, nums, question, progression, nums, nums[randomIndex]];
 };
 
 export default checkProgression;
+
+playGame(checkProgression());
