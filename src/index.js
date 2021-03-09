@@ -1,7 +1,6 @@
 import readlineSync from 'readline-sync';
 import isPrime from './games/prime.js';
 import isNumInProgression from './games/progression.js';
-import isGcd from './games/gcd.js';
 import getRandomIndex from './randomNum.js';
 
 const playGame = (args) => {
@@ -14,19 +13,19 @@ const playGame = (args) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
-  const funcArr = [isPrime, isNumInProgression, isGcd];
-  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?', 'Find the greatest common divisor of given numbers.'];
+  const funcArr = [isPrime, isNumInProgression];
+  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".', 'What number is missing in the progression?'];
   let funcIndex;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
-    const indexforFirstNum = getRandomIndex(nums);
-    const indexforSecondNum = getRandomIndex(nums);
+    const indexForFirstNum = getRandomIndex(nums);
+    const indexForSecondNum = getRandomIndex(nums);
     const sign = getRandomIndex(signs);
-    const roundQuestion = gameFunction(indexforFirstNum, indexforSecondNum, sign)[4];
+    const roundQuestion = gameFunction(indexForFirstNum, indexForSecondNum, sign)[4];
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ');
-    const result = gameFunction(indexforFirstNum, indexforSecondNum, sign, answer)[0];
-    const correctAnswer = gameFunction(indexforFirstNum, indexforSecondNum, sign, answer)[6];
+    const result = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[0];
+    const correctAnswer = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[6];
     //   || (!funcArr[funcIndex](index, index1, index2, answer)[0] && answer === 'no' && question.includes('yes'))) {
     if ((result && !question.includes('yes')) || (result && answer === 'yes') || (!result && answer === 'no')) {
       console.log('Correct!');

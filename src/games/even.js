@@ -7,10 +7,10 @@ const isEven = (number) => {
   return true;
 };
 
-const checkNumIsEven = (index) => {
+const checkNumIsEven = (randomIndex) => {
   const nums = [15, 6, 7];
   const question = 'Answer "yes" if the number is even, otherwise answer "no".';
-  return [isEven(nums[index]), checkNumIsEven, nums, question, nums[index], nums];
+  return [isEven(nums[randomIndex]), checkNumIsEven, nums, question, nums[randomIndex], nums];
 };
 
 export default checkNumIsEven;

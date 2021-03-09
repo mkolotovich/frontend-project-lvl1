@@ -11,16 +11,16 @@ const isCalculateNumRight = (firstNum, secondNum, sign, actions, answer) => {
   return [false, result];
 };
 
-const CalculateNums = (indexforFirstNum, indexforSecondNum, sign, answer) => {
+const CalculateNums = (indexForFirstNum, indexForSecondNum, sign, answer) => {
   const nums = [35, 16, 4, 10, 25, 11, 7];
   const question = 'What is the result of the expression?';
   const actions = [(a, b) => a + b, (a, b) => a - b, (a, b) => a * b, ['+', '-', '*']];
   const signs = actions[3];
-  const expression = `${nums[indexforFirstNum]} ${signs[sign]} ${nums[indexforSecondNum]}`;
+  const expression = `${nums[indexForFirstNum]} ${signs[sign]} ${nums[indexForSecondNum]}`;
   return [
-    isCalculateNumRight(nums[indexforFirstNum], nums[indexforSecondNum], sign, actions, answer)[0],
+    isCalculateNumRight(nums[indexForFirstNum], nums[indexForSecondNum], sign, actions, answer)[0],
     CalculateNums, nums, question, expression, signs,
-    isCalculateNumRight(nums[indexforFirstNum], nums[indexforSecondNum], sign, actions, answer)[1]];
+    isCalculateNumRight(nums[indexForFirstNum], nums[indexForSecondNum], sign, actions, answer)[1]];
 };
 
 export default CalculateNums;

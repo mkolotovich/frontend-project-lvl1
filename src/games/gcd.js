@@ -1,3 +1,5 @@
+import playGame from '../index.js';
+
 const isGcd = (firstNum, secondNum) => {
   let bigger; let smaller;
   if (firstNum > secondNum) {
@@ -17,12 +19,15 @@ const isGcd = (firstNum, secondNum) => {
   return bigger;
 };
 
-const checkGcd = (index, index1, index2, answer) => {
-  const arr = [25, 50, 100, 52, 3, 9, 3, 3, 4, 5, 1, 1];
-  if (isGcd(arr[index], arr[index1]) === Number(answer)) {
-    return [true, `${arr[index]} ${arr[index1]}`, arr];
+const checkGcd = (indexForFirstNum, indexForSecondNum, sign, answer) => {
+  const nums = [25, 50, 100, 52, 3, 9, 3, 3, 4, 5, 1, 1];
+  const question = 'Find the greatest common divisor of given numbers.';
+  if (isGcd(nums[indexForFirstNum], nums[indexForSecondNum]) === Number(answer)) {
+    return [true, checkGcd, nums, question, `${nums[indexForFirstNum]} ${nums[indexForSecondNum]}`, nums];
   }
-  return [false, `${arr[index]} ${arr[index1]}`, arr, arr, isGcd(arr[index], arr[index1], answer)];
+  return [false, checkGcd, nums, question, `${nums[indexForFirstNum]} ${nums[indexForSecondNum]}`, nums, isGcd(nums[indexForFirstNum], nums[indexForSecondNum], answer)];
 };
 
 export default checkGcd;
+
+playGame(checkGcd());
