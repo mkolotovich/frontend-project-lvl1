@@ -1,3 +1,5 @@
+import playGame from '../index.js';
+
 const isPrime = (num) => {
   if (num < 2) {
     return false;
@@ -10,9 +12,12 @@ const isPrime = (num) => {
   return true;
 };
 
-const checkPrime = (index) => {
-  const arr = [3, 5, 6, 7];
-  return [isPrime(arr[index]), arr[index], arr, arr];
+const checkPrime = (randomIndex) => {
+  const nums = [3, 5, 6, 7];
+  const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  return [isPrime(nums[randomIndex]), checkPrime, nums, question, nums[randomIndex], nums];
 };
 
 export default checkPrime;
+
+playGame(checkPrime());

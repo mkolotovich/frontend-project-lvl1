@@ -1,5 +1,4 @@
 import readlineSync from 'readline-sync';
-import isPrime from './games/prime.js';
 import getRandomIndex from './randomNum.js';
 
 const playGame = (args) => {
@@ -12,9 +11,6 @@ const playGame = (args) => {
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
-  const funcArr = [isPrime];
-  const questionsArr = ['Answer "yes" if given number is prime. Otherwise answer "no".'];
-  let funcIndex;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
     const indexForFirstNum = getRandomIndex(nums);
@@ -25,7 +21,6 @@ const playGame = (args) => {
     const answer = readlineSync.question('Your answer: ');
     const result = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[0];
     const correctAnswer = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[6];
-    //   || (!funcArr[funcIndex](index, index1, index2, answer)[0] && answer === 'no' && question.includes('yes'))) {
     if ((result && !question.includes('yes')) || (result && answer === 'yes') || (!result && answer === 'no')) {
       console.log('Correct!');
       correctAnswersCount += 1;
