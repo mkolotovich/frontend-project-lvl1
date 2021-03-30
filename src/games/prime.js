@@ -18,6 +18,8 @@ const checkPrime = (randomIndex) => {
   return [isPrime(nums[randomIndex]), checkPrime, nums, question, nums[randomIndex], nums];
 };
 
-export default checkPrime;
+const startGame = () => {
+  playGame(checkPrime());
+};
 
-playGame(checkPrime());
+export default startGame;

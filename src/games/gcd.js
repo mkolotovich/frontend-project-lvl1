@@ -28,6 +28,8 @@ const checkGcd = (indexForFirstNum, indexForSecondNum, sign, answer) => {
   return [false, checkGcd, nums, question, `${nums[indexForFirstNum]} ${nums[indexForSecondNum]}`, nums, isGcd(nums[indexForFirstNum], nums[indexForSecondNum], answer)];
 };
 
-export default checkGcd;
+const startGame = () => {
+  playGame(checkGcd());
+};
 
-playGame(checkGcd());
+export default startGame;

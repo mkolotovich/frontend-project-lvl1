@@ -23,6 +23,8 @@ const CalculateNums = (indexForFirstNum, indexForSecondNum, sign, answer) => {
     isCalculateNumRight(nums[indexForFirstNum], nums[indexForSecondNum], sign, actions, answer)[1]];
 };
 
-export default CalculateNums;
+const startGame = () => {
+  playGame(CalculateNums());
+};
 
-playGame(CalculateNums());
+export default startGame;

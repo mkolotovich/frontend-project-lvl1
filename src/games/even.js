@@ -13,6 +13,8 @@ const checkNumIsEven = (randomIndex) => {
   return [isEven(nums[randomIndex]), checkNumIsEven, nums, question, nums[randomIndex], nums];
 };
 
-export default checkNumIsEven;
+const startGame = () => {
+  playGame(checkNumIsEven());
+};
 
-playGame(checkNumIsEven());
+export default startGame;

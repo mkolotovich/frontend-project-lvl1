@@ -17,6 +17,8 @@ const checkProgression = (randomIndex, indexForSecondNum, sign, answer) => {
     checkProgression, nums, question, progression, nums, nums[randomIndex]];
 };
 
-export default checkProgression;
+const startGame = () => {
+  playGame(checkProgression());
+};
 
-playGame(checkProgression());
+export default startGame;
