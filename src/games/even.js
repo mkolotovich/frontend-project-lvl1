@@ -1,16 +1,13 @@
 import playGame from '../index.js';
+import getRandomIndex from '../randomNum.js';
 
-const isEven = (number) => {
-  if (number % 2 !== 0) {
-    return false;
-  }
-  return true;
-};
+const isEven = (number) => number % 2 === 0;
 
-const checkNumIsEven = (randomIndex) => {
+const checkNumIsEven = () => {
   const nums = [15, 6, 7];
+  const randomIndex = getRandomIndex(nums);
   const question = 'Answer "yes" if the number is even, otherwise answer "no".';
-  return [isEven(nums[randomIndex]), checkNumIsEven, nums, question, nums[randomIndex], nums];
+  return [isEven(nums[randomIndex]), checkNumIsEven, nums[randomIndex], question];
 };
 
 const startGame = () => {

@@ -1,26 +1,22 @@
 import readlineSync from 'readline-sync';
-import getRandomIndex from './randomNum.js';
 
 const playGame = (args) => {
   let correctAnswersCount = 0;
-  const gameFunction = args[1];
-  const nums = args[2];
-  const signs = args[5];
-  const question = args[3];
+  // const signs = args[5];
+  const [, gameFunction, num, question] = args;
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
-    const indexForFirstNum = getRandomIndex(nums);
-    const indexForSecondNum = getRandomIndex(nums);
-    const sign = getRandomIndex(signs);
-    const roundQuestion = gameFunction(indexForFirstNum, indexForSecondNum, sign)[4];
+    // const indexForSecondNum = getRandomIndex(nums);
+    // const sign = getRandomIndex(signs);
+    const [result, , roundQuestion] = gameFunction(num);
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ');
-    const result = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[0];
-    const correctAnswer = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[6];
+    // const correctAnswer = gameFunction(indexForFirstNum, indexForSecondNum, sign, answer)[6];
+    const correctAnswer = args[0];
     if ((result && !question.includes('yes')) || (result && answer === 'yes') || (!result && answer === 'no')) {
       console.log('Correct!');
       correctAnswersCount += 1;
@@ -39,6 +35,6 @@ const playGame = (args) => {
   if (correctAnswersCount === winAnswersCount) {
     console.log(`Congratulations, ${name}!`);
   }
-};
+};  
 
 export default playGame;
