@@ -26,7 +26,10 @@ const checkPrime = (answer, randomIndexParam) => {
     randomIndex = randomIndexClone;
   }
   const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  return [isPrime(nums[randomIndex]), checkPrime, nums[randomIndex], question, randomIndexClone];
+  if (isPrime(nums[randomIndex]) && answer !== 'yes') {
+    return [isPrime(nums[randomIndex]), checkPrime, nums[randomIndex], question, randomIndexClone, 'yes'];
+  }
+  return [isPrime(nums[randomIndex]), checkPrime, nums[randomIndex], question, randomIndexClone, 'no'];
 };
 
 const startGame = () => {

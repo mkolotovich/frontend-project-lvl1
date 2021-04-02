@@ -16,7 +16,10 @@ const checkNumIsEven = (answer, randomIndexParam) => {
     randomIndex = randomIndexClone;
   }
   const question = 'Answer "yes" if the number is even, otherwise answer "no".';
-  return [isEven(nums[randomIndex]), checkNumIsEven, nums[randomIndex], question, randomIndexClone];
+  if (isEven(nums[randomIndex]) && answer !== 'yes') {
+    return [isEven(nums[randomIndex]), checkNumIsEven, nums[randomIndex], question, randomIndexClone, 'yes'];
+  }
+  return [isEven(nums[randomIndex]), checkNumIsEven, nums[randomIndex], question, randomIndexClone, 'no'];
 };
 
 const startGame = () => {

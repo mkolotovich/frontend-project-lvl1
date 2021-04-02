@@ -17,13 +17,7 @@ const playGame = (args) => {
       console.log('Correct!');
       correctAnswersCount += 1;
     } else {
-      if (!question.includes('yes')) {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      } else if (result && answer !== 'yes') {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.`);
-      } else {
-        console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.`);
-      }
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
       console.log(`Let's try again, ${name}!`);
       break;
     }
