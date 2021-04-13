@@ -16,7 +16,7 @@ const generateGameData = (answer, randomIndexParam) => {
     randomIndex = randomIndexClone;
   }
   const gameData = [randomIndex, nums[randomIndex], isEven(nums[randomIndex])];
-  const [,,result] = gameData;
+  const [,, result] = gameData;
   if ((result && answer === 'yes') || (!result && answer === 'no')) {
     gameData.unshift(true);
   } else {
