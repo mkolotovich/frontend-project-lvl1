@@ -2,18 +2,18 @@ import readlineSync from 'readline-sync';
 
 const playGame = (args) => {
   let correctAnswersCount = 0;
-  const [, gameFunction, , question] = args;
+  const [question, gameFunction] = args;
   console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
   const winAnswersCount = 3;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
-    const [,, roundQuestion,, randomIndexes] = gameFunction();
+    const [,randomIndex, roundQuestion, , ] = gameFunction();
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ');
-    const [result, , , , , correctAnswer] = gameFunction(answer, randomIndexes);
-    if ((result && !question.includes('yes')) || (result && answer === 'yes') || (!result && answer === 'no')) {
+    const [result, , , ,correctAnswer] = gameFunction(answer, randomIndex);
+    if (result) {
       console.log('Correct!');
       correctAnswersCount += 1;
     } else {
