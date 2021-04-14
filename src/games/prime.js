@@ -13,7 +13,7 @@ const isPrime = (num) => {
   return true;
 };
 
-const checkPrime = (answer, randomIndexParam) => {
+const generateGameData = (answer, randomIndexParam) => {
   const nums = [3, 5, 6, 7];
   let randomIndex = getRandomIndex(nums);
   let randomIndexClone;
@@ -25,11 +25,24 @@ const checkPrime = (answer, randomIndexParam) => {
   if (randomIndex !== randomIndexClone) {
     randomIndex = randomIndexClone;
   }
-  const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  if (isPrime(nums[randomIndex]) && answer !== 'yes') {
-    return [isPrime(nums[randomIndex]), checkPrime, nums[randomIndex], question, randomIndexClone, 'yes'];
+  const result = isPrime(nums[randomIndex]);
+  const gameData = [randomIndexClone, nums[randomIndex]];
+  if ((result && answer === 'yes') || (!result && answer === 'no')) {
+    gameData.unshift(true);
+  } else {
+    gameData.unshift(false);
   }
-  return [isPrime(nums[randomIndex]), checkPrime, nums[randomIndex], question, randomIndexClone, 'no'];
+  if (result && answer !== 'yes') {
+    gameData.push('yes');
+  } else {
+    gameData.push('no');
+  }
+  return gameData;
+};
+
+const checkPrime = () => {
+  const question = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  return [question, generateGameData];
 };
 
 const startGame = () => {
