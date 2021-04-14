@@ -20,9 +20,8 @@ const findGcd = (firstNum, secondNum) => {
   return bigger;
 };
 
-const checkGcd = (answer, randomIndexesParam) => {
+const generateGameData = (answer, randomIndexesParam) => {
   const nums = [25, 50, 100, 52, 3, 9, 3, 3, 4, 5, 1, 1];
-  const question = 'Find the greatest common divisor of given numbers.';
   const randomIndexes = [getRandomIndex(nums), getRandomIndex(nums)];
   let randomIndexesClone = [];
   if (randomIndexesParam === undefined) {
@@ -37,11 +36,19 @@ const checkGcd = (answer, randomIndexesParam) => {
   }
   const [indexForFirstNum, indexForSecondNum] = randomIndexes;
   const expression = `${nums[indexForFirstNum]} ${nums[indexForSecondNum]}`;
-  if (findGcd(nums[indexForFirstNum], nums[indexForSecondNum]) === Number(answer)) {
-    return [true, checkGcd, expression, question, randomIndexesClone];
+  const result = findGcd(nums[indexForFirstNum], nums[indexForSecondNum]);
+  const gameData = [randomIndexesClone, expression, result];
+  if (result === Number(answer)) {
+    gameData.unshift(true);
+  } else {
+    gameData.unshift(false);
   }
-  return [false, checkGcd, expression, question, randomIndexesClone,
-    findGcd(nums[indexForFirstNum], nums[indexForSecondNum], answer)];
+  return gameData;
+};
+
+const checkGcd = () => {
+  const question = 'Find the greatest common divisor of given numbers.';
+  return [question, generateGameData];
 };
 
 const startGame = () => {
