@@ -8,9 +8,8 @@ const isNumInProgression = (num, answer) => {
   return [false, num];
 };
 
-const checkProgression = (answer, randomIndexesParam) => {
+const generateGameData = (answer, randomIndexesParam) => {
   const nums = [5, 7, 9, 11, 13, 15, 17, 19, 21, 23];
-  const question = 'What number is missing in the progression?';
   const modifyedNumbers = nums.slice();
   let randomIndex = getRandomIndex(nums);
   let randomIndexClone;
@@ -24,8 +23,17 @@ const checkProgression = (answer, randomIndexesParam) => {
   }
   modifyedNumbers[randomIndex] = '..';
   const progression = modifyedNumbers.join(' ');
-  return [isNumInProgression(nums[randomIndex], answer)[0],
-    checkProgression, progression, question, randomIndexClone, nums[randomIndex]];
+  const [result, correctAnswer] = isNumInProgression(nums[randomIndex], answer);
+  const gameData = [result, randomIndex, progression];
+  if (result !== Number(answer)) {
+    gameData.push(correctAnswer);
+  }
+  return gameData;
+};
+
+const checkProgression = () => {
+  const question = 'What number is missing in the progression?';
+  return [question, generateGameData];
 };
 
 const startGame = () => {
