@@ -23,9 +23,9 @@ const generateGameData = (answer, randomIndexParam) => {
     gameData.unshift(false);
   }
   if (result && answer !== 'yes') {
-    gameData.push('yes');
+    gameData[gameData.length - 1] = 'yes';
   } else {
-    gameData.push('no');
+    gameData[gameData.length - 1] = 'no';
   }
   return gameData;
 };

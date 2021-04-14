@@ -1,9 +1,8 @@
 import playGame from '../index.js';
 import getRandomIndex from '../randomNum.js';
 
-const сalculateNums = (answer, randomIndexesParam) => {
+const generateGameData = (answer, randomIndexesParam) => {
   const nums = [35, 16, 4, 10, 25, 11, 7];
-  const question = 'What is the result of the expression?';
   const actions = [(a, b) => a + b, (a, b) => a - b, (a, b) => a * b, ['+', '-', '*']];
   const [,,, signs] = actions;
   const randomIndexes = [getRandomIndex(nums), getRandomIndex(nums), getRandomIndex(signs)];
@@ -21,10 +20,18 @@ const сalculateNums = (answer, randomIndexesParam) => {
   const [indexForFirstNum, indexForSecondNum, sign] = randomIndexes;
   const expression = `${nums[indexForFirstNum]} ${signs[sign]} ${nums[indexForSecondNum]}`;
   const result = actions[sign](nums[indexForFirstNum], nums[indexForSecondNum]);
+  const gameData = [randomIndexes, expression, result];
   if (result === Number(answer)) {
-    return [true, сalculateNums, expression, question, randomIndexesClone, result];
+    gameData.unshift(true);
+  } else {
+    gameData.unshift(false);
   }
-  return [false, сalculateNums, expression, question, randomIndexesClone, result];
+  return gameData;
+};
+
+const сalculateNums = () => {
+  const question = 'What is the result of the expression?';
+  return [question, generateGameData];
 };
 
 const startGame = () => {

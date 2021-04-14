@@ -9,10 +9,10 @@ const playGame = (args) => {
   const winAnswersCount = 3;
   console.log(question);
   while (correctAnswersCount < winAnswersCount) {
-    const [, randomIndex, roundQuestion] = gameFunction();
+    const [, randomIndexes, roundQuestion] = gameFunction();
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ');
-    const [result, , , , correctAnswer] = gameFunction(answer, randomIndex);
+    const [result, , , correctAnswer] = gameFunction(answer, randomIndexes);
     if (result) {
       console.log('Correct!');
       correctAnswersCount += 1;
