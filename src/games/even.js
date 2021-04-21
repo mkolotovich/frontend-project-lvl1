@@ -3,16 +3,11 @@ import getRandomNum from '../randomNum.js';
 
 const isEven = (number) => number % 2 === 0;
 
-const generateGameData = (answer) => {
+const generateGameData = () => {
   const randomNum = getRandomNum(0, 20);
   const gameData = [];
   gameData.push(randomNum);
-  const result = isEven(randomNum);
-  if (result && answer !== 'yes') {
-    gameData.push('yes');
-  } else {
-    gameData.push('no');
-  }
+  isEven(randomNum) ? gameData.push('yes') : gameData.push('no');
   return gameData;
 };
 
