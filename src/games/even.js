@@ -4,11 +4,9 @@ import getRandomNum from '../randomNum.js';
 const isEven = (number) => number % 2 === 0;
 
 const generateGameData = () => {
-  const randomNum = getRandomNum(0, 20);
-  const gameData = [];
-  gameData.push(randomNum);
-  isEven(randomNum) ? gameData.push('yes') : gameData.push('no');
-  return gameData;
+  const question = getRandomNum(0, 20);
+  const answer = isEven(question) ? 'yes' : 'no';
+  return [question, answer];
 };
 
 const startGame = () => {
