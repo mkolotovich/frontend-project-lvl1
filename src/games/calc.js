@@ -8,8 +8,8 @@ const generateGameData = () => {
   const secondNum = getRandomNum(1, 25);
   const [sign, expression] = signs[signsIndex];
   const question = `${firstNum} ${sign} ${secondNum}`;
-  const answer = expression(firstNum, secondNum);
-  return [question, `${answer}`];
+  const answer = `${expression(firstNum, secondNum)}`;
+  return [question, answer];
 };
 
 const startGame = () => {
