@@ -1,16 +1,15 @@
 import playGame from '../index.js';
 import getRandomNum from '../randomNum.js';
-import getRandomIndex from '../randomIndex.js';
 
 const generateGameData = () => {
-  const signs = ['+', '-', '*'];
-  const actions = [(a, b) => a + b, (a, b) => a - b, (a, b) => a * b, signs];
-  const randomExpression = [getRandomNum(1, 25), getRandomIndex(signs), getRandomNum(1, 25)];
-  const [firstNum, sign, secondNum] = randomExpression;
-  const expression = `${firstNum} ${signs[sign]} ${secondNum}`;
-  const result = actions[sign](firstNum, secondNum);
-  const gameData = [expression, `${result}`];
-  return gameData;
+  const signs = [['+', (a, b) => a + b], ['-', (a, b) => a - b], ['*', (a, b) => a * b]];
+  const firstNum = getRandomNum(1, 25);
+  const signsIndex = getRandomNum(0, signs.length);
+  const secondNum = getRandomNum(1, 25);
+  const [sign, expression] = signs[signsIndex];
+  const question = `${firstNum} ${sign} ${secondNum}`;
+  const answer = expression(firstNum, secondNum);
+  return [question, `${answer}`];
 };
 
 const startGame = () => {
