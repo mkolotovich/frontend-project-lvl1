@@ -17,12 +17,10 @@ const playGame = (question, gameFunction) => {
     } else {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
       console.log(`Let's try again, ${name}!`);
-      break;
+      return;
     }
   }
-  if (correctAnswersCount === winAnswersCount) {
-    console.log(`Congratulations, ${name}!`);
-  }
+  console.log(`Congratulations, ${name}!`);
 };
 
 export default playGame;

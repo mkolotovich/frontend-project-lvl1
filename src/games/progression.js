@@ -1,11 +1,11 @@
 import playGame from '../index.js';
 import getRandomIndex from '../randomNum.js';
 
-const makeProgression = (firstItem, step, length) => {
+const makeProgression = (progressionStart, step, length) => {
   const minLength = 5;
   const progressionLength = (length < minLength) ? minLength : length;
   const progression = [];
-  let progressionItem = firstItem;
+  let progressionItem = progressionStart;
   for (let i = 0; i < progressionLength; i += 1) {
     progression[i] = progressionItem;
     progressionItem += step;
