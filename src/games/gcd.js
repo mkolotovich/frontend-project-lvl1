@@ -9,10 +9,9 @@ const findGcd = (firstNum, secondNum) => {
 const generateGameData = () => {
   const randomNums = [getRandomNum(1, 101), getRandomNum(1, 101)];
   const [firstNum, secondNum] = randomNums;
-  const expression = `${firstNum} ${secondNum}`;
-  const result = firstNum > secondNum ? findGcd(firstNum, secondNum) : findGcd(secondNum, firstNum);
-  const gameData = [expression, `${result}`];
-  return gameData;
+  const question = `${firstNum} ${secondNum}`;
+  const answer = firstNum > secondNum ? `${findGcd(firstNum, secondNum)}` : `${findGcd(secondNum, firstNum)}`;
+  return [question, answer];
 };
 
 const startGame = () => {
