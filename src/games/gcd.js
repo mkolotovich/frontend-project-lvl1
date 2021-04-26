@@ -2,15 +2,16 @@ import playGame from '../index.js';
 import getRandomNum from '../randomNum.js';
 
 const findGcd = (firstNum, secondNum) => {
-  if (firstNum % secondNum === 0) { return secondNum; }
-  return findGcd(secondNum, firstNum % secondNum);
+  const bigger = (firstNum > secondNum) ? firstNum : secondNum;
+  const smaller = (firstNum > secondNum) ? secondNum : firstNum;
+  if (bigger % smaller === 0) return smaller; return findGcd(smaller, bigger % smaller);
 };
 
 const generateGameData = () => {
-  const randomNums = [getRandomNum(1, 101), getRandomNum(1, 101)];
-  const [firstNum, secondNum] = randomNums;
+  const firstNum = getRandomNum(1, 101);
+  const secondNum = getRandomNum(1, 101);
   const question = `${firstNum} ${secondNum}`;
-  const answer = firstNum > secondNum ? `${findGcd(firstNum, secondNum)}` : `${findGcd(secondNum, firstNum)}`;
+  const answer = `${findGcd(firstNum, secondNum)}`;
   return [question, answer];
 };
 

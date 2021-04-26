@@ -2,11 +2,11 @@ import playGame from '../index.js';
 import getRandomNum from '../randomNum.js';
 
 const generateGameData = () => {
-  const signs = [['+', (a, b) => a + b], ['-', (a, b) => a - b], ['*', (a, b) => a * b]];
+  const operations = [['+', (a, b) => a + b], ['-', (a, b) => a - b], ['*', (a, b) => a * b]];
   const firstNum = getRandomNum(1, 25);
-  const signsIndex = getRandomNum(0, signs.length);
+  const signsIndex = getRandomNum(0, operations.length);
   const secondNum = getRandomNum(1, 25);
-  const [sign, expression] = signs[signsIndex];
+  const [sign, expression] = operations[signsIndex];
   const question = `${firstNum} ${sign} ${secondNum}`;
   const answer = `${expression(firstNum, secondNum)}`;
   return [question, answer];
