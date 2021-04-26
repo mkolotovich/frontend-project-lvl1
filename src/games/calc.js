@@ -8,7 +8,7 @@ const generateGameData = () => {
   const secondNum = getRandomNum(1, 25);
   const [sign, expression] = operations[signsIndex];
   const question = `${firstNum} ${sign} ${secondNum}`;
-  const answer = `${expression(firstNum, secondNum)}`;
+  const answer = expression(firstNum, secondNum).toString();
   return [question, answer];
 };
 
