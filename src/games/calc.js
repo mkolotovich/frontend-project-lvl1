@@ -6,9 +6,9 @@ const generateGameData = () => {
   const firstNum = getRandomNum(1, 25);
   const signsIndex = getRandomNum(0, operations.length);
   const secondNum = getRandomNum(1, 25);
-  const [sign, expression] = operations[signsIndex];
+  const [sign, operation] = operations[signsIndex];
   const question = `${firstNum} ${sign} ${secondNum}`;
-  const answer = expression(firstNum, secondNum).toString();
+  const answer = operation(firstNum, secondNum).toString();
   return [question, answer];
 };
 
